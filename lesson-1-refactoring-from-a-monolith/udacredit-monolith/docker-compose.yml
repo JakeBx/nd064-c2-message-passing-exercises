@@ -26,5 +26,16 @@ services:
     depends_on:
       - api
 
+  customer-api:
+    build: customer_api
+    command: [ "flask", "run", "--host=0.0.0.0"]
+    volumes:
+      - ./customer_api:/backend
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+    ports:
+      - "7000:5000"
+
 volumes:
   node-modules:
